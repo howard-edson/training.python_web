@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
 <meta name="version" content="S5 1.1" />
 <title>Python Web Programming</title>
 <link rel="stylesheet" href="ui/uw_pce_theme/pretty.css" type="text/css" />
@@ -42,6 +42,18 @@
 <p>Session 2: Web Protocols</p>
 <p class="intro-blurb">Wherein we learn about the languages that machines speak to each other</p>
 
+</div>
+<div class="slide" id="but-first">
+<h1>But First</h1>
+<p class="big-centered">Some boring business of identification</p>
+</div>
+<div class="slide" id="but-second">
+<h1>But Second</h1>
+<p class="big-centered">Questions from the Homework?</p>
+</div>
+<div class="slide" id="and-third">
+<h1>And Third</h1>
+<p class="big-centered">Examples of an echo server using <tt class="docutils literal">select</tt></p>
 </div>
 <div class="slide" id="what-is-a-protocol">
 <h1>What is a Protocol?</h1>
@@ -410,7 +422,7 @@ object</p>
  'To', 'Mime-Version', 'X-Mailer']
 &gt;&gt;&gt; msg['To']
 'demo&#64;crisewing.com'
-&gt;&gt;&gt; print msg.get_payload()
+&gt;&gt;&gt; print msg.get_payload()[0]
 If you are reading this email, ...
 </pre>
 <p class="incremental center"><strong>Neat, huh?</strong></p>
@@ -477,7 +489,7 @@ Content-Type: text/html; charset=UTF-8
 <p>Both share a common basic format:</p>
 <ul class="incremental simple">
 <li>Line separators are &lt;CRLF&gt; (familiar, no?)</li>
-<li>An required initial line (a command or a response code)</li>
+<li>A required initial line (a command or a response code)</li>
 <li>A (mostly) optional set of headers, one per line</li>
 <li>A blank line</li>
 <li>An optional body</li>
@@ -672,16 +684,16 @@ for HTTP traffic, say 1024.</p>
 <span class="c"># ...</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'waiting for a connection'</span>
+        <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">log_buffer</span><span class="p">,</span> <span class="s">'waiting for a connection'</span>
         <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c"># blocking</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'connection - </span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">'</span> <span class="o">%</span> <span class="n">addr</span>
+            <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">log_buffer</span><span class="p">,</span> <span class="s">'connection - {0}{1}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">addr</span><span class="p">)</span>
             <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">:</span>
                     <span class="k">break</span>
 
-            <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'sending response'</span>
+            <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">log_buffer</span><span class="p">,</span> <span class="s">'sending response'</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">response_ok</span><span class="p">()</span>
             <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
@@ -816,7 +828,7 @@ here is the first line</p>
 <pre class="code python incremental literal-block">
 <span class="k">def</span> <span class="nf">parse_request</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="n">first_line</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">protocol</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">first_line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">method</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">first_line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">!=</span> <span class="s">&quot;GET&quot;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;We only accept GET&quot;</span><span class="p">)</span>
     <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'request is okay'</span>
@@ -837,7 +849,7 @@ here is the first line</p>
 <span class="c"># ...</span>
 <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c"># blocking</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'connection - </span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">'</span> <span class="o">%</span> <span class="n">addr</span>
+    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">log_buffer</span><span class="p">,</span> <span class="s">'connection - {0}{1}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">addr</span><span class="p">)</span>
     <span class="n">request</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
@@ -846,7 +858,7 @@ here is the first line</p>
             <span class="k">break</span>
 
     <span class="n">parse_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s">'sending response'</span>
+    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">log_buffer</span><span class="p">,</span> <span class="s">'sending response'</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">response_ok</span><span class="p">()</span>
     <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 <span class="k">finally</span><span class="p">:</span>
