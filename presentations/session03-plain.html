@@ -4,62 +4,428 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
-<meta name="version" content="S5 1.1" />
 <title>Python Web Programming</title>
-<link rel="stylesheet" href="ui/uw_pce_theme/pretty.css" type="text/css" />
-<!-- configuration parameters -->
-<meta name="defaultView" content="slideshow" />
-<meta name="controlVis" content="hidden" />
-<!-- style sheet links -->
-<script src="ui/uw_pce_theme/slides.js" type="text/javascript"></script>
-<link rel="stylesheet" href="ui/uw_pce_theme/slides.css"
-      type="text/css" media="projection" id="slideProj" />
-<link rel="stylesheet" href="ui/uw_pce_theme/outline.css"
-      type="text/css" media="screen" id="outlineStyle" />
-<link rel="stylesheet" href="ui/uw_pce_theme/print.css"
-      type="text/css" media="print" id="slidePrint" />
-<link rel="stylesheet" href="ui/uw_pce_theme/opera.css"
-      type="text/css" media="projection" id="operaFix" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+
+/* Pygments 'colorful' colorization */
+.code { background-color: #ffffcc}
+.current .c, .c { color: #888888 } /* Comment */
+.current .err, .err { color: #FF0000; background-color: #FFAAAA } /* Error */
+.current .k, .k { color: #008800; font-weight: bold } /* Keyword */
+.current .o, .o { color: #333333 } /* Operator */
+.current .cm, .cm { color: #888888 } /* Comment.Multiline */
+.current .cp, .cp { color: #557799 } /* Comment.Preproc */
+.current .c1, .c1 { color: #888888 } /* Comment.Single */
+.current .cs, .cs { color: #cc0000; font-weight: bold } /* Comment.Special */
+.current .gd, .gd { color: #A00000 } /* Generic.Deleted */
+.current .ge, .ge { font-style: italic } /* Generic.Emph */
+.current .gr, .gr { color: #FF0000 } /* Generic.Error */
+.current .gh, .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.current .gi, .gi { color: #00A000 } /* Generic.Inserted */
+.current .go, .go { color: #888888 } /* Generic.Output */
+.current .gp, .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.current .gs, .gs { font-weight: bold } /* Generic.Strong */
+.current .gu, .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.current .gt, .gt { color: #0044DD } /* Generic.Traceback */
+.current .kc, .kc { color: #008800; font-weight: bold } /* Keyword.Constant */
+.current .kd, .kd { color: #008800; font-weight: bold } /* Keyword.Declaration */
+.current .kn, .kn { color: #008800; font-weight: bold } /* Keyword.Namespace */
+.current .kp, .kp { color: #003388; font-weight: bold } /* Keyword.Pseudo */
+.current .kr, .kr { color: #008800; font-weight: bold } /* Keyword.Reserved */
+.current .kt, .kt { color: #333399; font-weight: bold } /* Keyword.Type */
+.current .m, .m { color: #6600EE; font-weight: bold } /* Literal.Number */
+.current .s, .s { background-color: #fff0f0 } /* Literal.String */
+.current .na, .na { color: #0000CC } /* Name.Attribute */
+.current .nb, .nb { color: #007020 } /* Name.Builtin */
+.current .nc, .nc { color: #BB0066; font-weight: bold } /* Name.Class */
+.current .no, .no { color: #003366; font-weight: bold } /* Name.Constant */
+.current .nd, .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.current .ni, .ni { color: #880000; font-weight: bold } /* Name.Entity */
+.current .ne, .ne { color: #FF0000; font-weight: bold } /* Name.Exception */
+.current .nf, .nf { color: #0066BB; font-weight: bold } /* Name.Function */
+.current .nl, .nl { color: #997700; font-weight: bold } /* Name.Label */
+.current .nn, .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.current .nt, .nt { color: #007700 } /* Name.Tag */
+.current .nv, .nv { color: #996633 } /* Name.Variable */
+.current .ow, .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.current .w, .w { color: #bbbbbb } /* Text.Whitespace */
+.current .mf, .mf { color: #6600EE; font-weight: bold } /* Literal.Number.Float */
+.current .mh, .mh { color: #005588; font-weight: bold } /* Literal.Number.Hex */
+.current .mi, .mi { color: #0000DD; font-weight: bold } /* Literal.Number.Integer */
+.current .mo, .mo { color: #4400EE; font-weight: bold } /* Literal.Number.Oct */
+.current .sb, .sb { background-color: #fff0f0 } /* Literal.String.Backtick */
+.current .sc, .sc { color: #0044DD } /* Literal.String.Char */
+.current .sd, .sd { color: #DD4422 } /* Literal.String.Doc */
+.current .s2, .s2 { background-color: #fff0f0 } /* Literal.String.Double */
+.current .se, .se { color: #666666; font-weight: bold; background-color: #fff0f0 } /* Literal.String.Escape */
+.current .sh, .sh { background-color: #fff0f0 } /* Literal.String.Heredoc */
+.current .si, .si { background-color: #eeeeee } /* Literal.String.Interpol */
+.current .sx, .sx { color: #DD2200; background-color: #fff0f0 } /* Literal.String.Other */
+.current .sr, .sr { color: #000000; background-color: #fff0ff } /* Literal.String.Regex */
+.current .s1, .s1 { background-color: #fff0f0 } /* Literal.String.Single */
+.current .ss, .ss { color: #AA6600 } /* Literal.String.Symbol */
+.current .bp, .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.current .vc, .vc { color: #336699 } /* Name.Variable.Class */
+.current .vg, .vg { color: #dd7700; font-weight: bold } /* Name.Variable.Global */
+.current .vi, .vi { color: #3333BB } /* Name.Variable.Instance */
+.current .il, .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */
+.current .n, .n, .current .o, .o, .current .p, .p {color: black} 
+
+</style>
 </head>
 <body>
-<div class="layout">
-<div id="controls"></div>
-<div id="currentSlide"></div>
-<div id="header">
-
-</div>
-<div id="footer">
-<h1>Python Web Programming</h1>
-<h2><a class="reference external" href="http://github.com/cewing/training.python_web">View document source</a>.
-</h2>
-</div>
-</div>
-<div class="presentation">
-<div class="slide" id="slide0">
+<div class="document" id="python-web-programming">
 <h1 class="title">Python Web Programming</h1>
 
 <img alt="img/granny_mashup.png" class="align-left" src="img/granny_mashup.png" style="width: 50%;" />
 <p>Session 3: Scraping, APIs and Mashups</p>
 <p class="intro-blurb">Wherein we learn how to make order from the chaos of the wild internet.</p>
 <p class="image-credit">image: Paul Downey <a class="reference external" href="http://www.flickr.com/photos/psd/492139935/">http://www.flickr.com/photos/psd/492139935/</a> - CC-BY</p>
-
-</div>
-<div class="slide" id="a-dilemma">
+<div class="section" id="a-dilemma">
 <h1>A Dilemma</h1>
 <p>The internet makes a vast quantity of data available.</p>
 <p class="incremental">But not always in the form or combination you want.</p>
 <p class="incremental">It would be nice to be able to combine data from different sources to create
 <em>meaning</em>.</p>
 </div>
-<div class="slide" id="the-big-question">
+<div class="section" id="the-big-question">
 <h1>The Big Question</h1>
 <p class="big-centered">But How?</p>
 </div>
-<div class="slide" id="the-big-answer">
+<div class="section" id="the-big-answer">
 <h1>The Big Answer</h1>
 <p class="big-centered">Mashups</p>
 </div>
-<div class="slide" id="mashups">
+<div class="section" id="mashups">
 <h1>Mashups</h1>
 <p>A mashup is:</p>
 <blockquote>
@@ -67,7 +433,7 @@ a web page, or web application, that uses and combines data, presentation
 or functionality from two or more sources to create new services.</blockquote>
 <p class="image-credit">definition courtsey of <a class="reference external" href="http://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)">wikipedia</a></p>
 </div>
-<div class="slide" id="data-sources">
+<div class="section" id="data-sources">
 <h1>Data Sources</h1>
 <p>The key to mashups is the idea of data sources.</p>
 <p class="incremental">These come in many flavors:</p>
@@ -78,14 +444,14 @@ or functionality from two or more sources to create new services.</blockquote>
 <li>Web services providing presentation (mapping)</li>
 </ul>
 </div>
-<div class="slide" id="html-sources">
+<div class="section" id="html-sources">
 <h1>HTML Sources</h1>
 <p>It would be nice if all online data were available in well-structured formats.</p>
 <p class="incremental">The reality is that much data is available only in HTML.</p>
 <p class="incremental">Still we can get at it, with some effort.</p>
 <p class="incremental">By scraping the data from the web pages.</p>
 </div>
-<div class="slide" id="html-ideally">
+<div class="section" id="html-ideally">
 <h1>HTML, Ideally</h1>
 <pre class="literal-block">
 &lt;!DOCTYPE html&gt;
@@ -99,7 +465,7 @@ or functionality from two or more sources to create new services.</blockquote>
 &lt;/html&gt;
 </pre>
 </div>
-<div class="slide" id="html-irl">
+<div class="section" id="html-irl">
 <h1>HTML... IRL</h1>
 <pre class="literal-block">
 &lt;html&gt;
@@ -113,16 +479,16 @@ or functionality from two or more sources to create new services.</blockquote>
 &lt;/html&gt;
 </pre>
 </div>
-<div class="slide" id="fffffffffuuuuuuuuuuuuu">
+<div class="section" id="fffffffffuuuuuuuuuuuuu">
 <h1>FFFFFFFFFUUUUUUUUUUUUU</h1>
 <img alt="img/scream.jpg" class="align-center" src="img/scream.jpg" style="width: 32%;" />
 <p class="image-credit">Photo by Matthew via Flickr (<a class="reference external" href="http://www.flickr.com/photos/purplemattfish/3918004964/">http://www.flickr.com/photos/purplemattfish/3918004964/</a>) - CC-BY-NC-ND</p>
 </div>
-<div class="slide" id="the-law-of-the-internet">
+<div class="section" id="the-law-of-the-internet">
 <h1>The Law of The Internet</h1>
 <p class="big-centered">&quot;Be strict in what you send and tolerant in what you receive&quot;</p>
 </div>
-<div class="slide" id="taming-the-mess">
+<div class="section" id="taming-the-mess">
 <h1>Taming the Mess</h1>
 <p>Luckily, there's a tool to help with this:  <tt class="docutils literal">BeautifulSoup</tt>.</p>
 <p class="incremental">BeautifulSoup is a great tool, but it's not in the Standard Library. We'll
@@ -137,7 +503,7 @@ a kitten</li>
 <li><strong>Always</strong></li>
 </ul>
 </div>
-<div class="slide" id="getting-virtualenv">
+<div class="section" id="getting-virtualenv">
 <h1>Getting Virtualenv</h1>
 <p>Three options for installing virtualenv (this is the exception to the above
 rule):</p>
@@ -156,7 +522,7 @@ $ tar -xzvf virtualenv-1.11.tar.gz
 <li>there is a copy in the class resources (<tt class="docutils literal">resources/common</tt>)</li>
 </ul>
 </div>
-<div class="slide" id="creating-a-virtualenv">
+<div class="section" id="creating-a-virtualenv">
 <h1>Creating a Virtualenv</h1>
 <p>Creating a new virtualenv is very very simple:</p>
 <pre class="small literal-block">
@@ -176,7 +542,7 @@ Installing setuptools, pip...done.
 </pre>
 </div>
 </div>
-<div class="slide" id="what-happened">
+<div class="section" id="what-happened">
 <h1>What Happened?</h1>
 <p>When you ran that file, a couple of things took place:</p>
 <ul class="incremental simple">
@@ -189,7 +555,7 @@ Installing setuptools, pip...done.
 </ul>
 <p class="incremental">Cool, eh?  Learn more at <a class="reference external" href="http://www.virtualenv.org">http://www.virtualenv.org</a></p>
 </div>
-<div class="slide" id="using-virtualenv">
+<div class="section" id="using-virtualenv">
 <h1>Using Virtualenv</h1>
 <p>To install new libraries into a virtualenv, first activate the env:</p>
 <pre class="literal-block">
@@ -204,7 +570,7 @@ $ source soupenv/bin/activate
 <p class="image-credit">If you use Powershell, read the note here:
 <a class="reference external" href="http://www.virtualenv.org/en/latest/virtualenv.html#activate-script">http://www.virtualenv.org/en/latest/virtualenv.html#activate-script</a></p>
 </div>
-<div class="slide" id="install-beautifulsoup">
+<div class="section" id="install-beautifulsoup">
 <h1>Install BeautifulSoup</h1>
 <p>Once the virtualenv is activated, you can simply use pip or easy_install to
 install the libraries you want:</p>
@@ -212,7 +578,7 @@ install the libraries you want:</p>
 (soupenv)$ pip install beautifulsoup4
 </pre>
 </div>
-<div class="slide" id="choose-a-parsing-engine">
+<div class="section" id="choose-a-parsing-engine">
 <h1>Choose a Parsing Engine</h1>
 <p>BeautifulSoup is built to use the Python HTMLParser.</p>
 <ul class="incremental simple">
@@ -223,7 +589,7 @@ install the libraries you want:</p>
 <p class="incremental">There are two good choices: <tt class="docutils literal">lxml</tt> and <tt class="docutils literal">html5lib</tt>.</p>
 <p class="incremental"><tt class="docutils literal">lxml</tt> is better, but much harder to install.  Let's use <tt class="docutils literal">html5lib</tt>.</p>
 </div>
-<div class="slide" id="install-a-parsing-engine">
+<div class="section" id="install-a-parsing-engine">
 <h1>Install a Parsing Engine</h1>
 <p>Again, this is pretty simple:</p>
 <pre class="literal-block">
@@ -233,7 +599,7 @@ install the libraries you want:</p>
 <p class="incremental">BeautifulSoup will choose the &quot;best&quot; available.</p>
 <p class="incremental">You can specify the parser if you need to for some reason.</p>
 </div>
-<div class="slide" id="install-requests">
+<div class="section" id="install-requests">
 <h1>Install Requests</h1>
 <p>Python provides tools for opening urls and communicating with servers. It's
 spread across the <tt class="docutils literal">urllib</tt> and <tt class="docutils literal">urllib2</tt> packages.</p>
@@ -244,7 +610,7 @@ work.  Let's install it too.</p>
 (soupenv)$ pip install requests
 </pre>
 </div>
-<div class="slide" id="our-class-mashup">
+<div class="section" id="our-class-mashup">
 <h1>Our Class Mashup</h1>
 <p>We're going to build a mashup together today.</p>
 <p class="incremental">It will give us an annotated list of apartment rentals, so the next time we
@@ -254,7 +620,7 @@ source:</p>
 <p class="incremental">Craigslist</p>
 <p class="incremental">Open a new file in your editor: <tt class="docutils literal">mashup.py</tt>.</p>
 </div>
-<div class="slide" id="examine-the-source">
+<div class="section" id="examine-the-source">
 <h1>Examine the Source</h1>
 <p>Craigslist doesn't have an api, just a website, so we'll need to dig a bit</p>
 <p class="incremental">By going to the website and playing with the form there, we can derive a
@@ -267,7 +633,7 @@ formula for a search URL</p>
 </ul>
 <p class="incremental">We'll make an HTTP request with these parameters</p>
 </div>
-<div class="slide" id="opening-urls-with-requests">
+<div class="section" id="opening-urls-with-requests">
 <h1>Opening URLs with Requests</h1>
 <p>In <tt class="docutils literal">requests</tt>, each HTTP method has a module-level function:</p>
 <ul class="incremental simple">
@@ -283,7 +649,7 @@ formula for a search URL</p>
 <li>...</li>
 </ul>
 </div>
-<div class="slide" id="getting-responses-with-requests">
+<div class="section" id="getting-responses-with-requests">
 <h1>Getting Responses with Requests</h1>
 <p>The return value from one of these functions is a <tt class="docutils literal">response</tt> which provides:</p>
 <ul class="incremental simple">
@@ -297,7 +663,7 @@ formula for a search URL</p>
 </ul>
 <p class="incremental small"><tt class="docutils literal">requests documentation</tt>: <a class="reference external" href="http://docs.python-requests.org/en/latest/">http://docs.python-requests.org/en/latest/</a></p>
 </div>
-<div class="slide" id="fetch-search-results">
+<div class="section" id="fetch-search-results">
 <h1>Fetch Search Results</h1>
 <p>We'll start by writing a function <tt class="docutils literal">fetch_search_results</tt></p>
 <ul class="incremental simple">
@@ -309,7 +675,7 @@ formula for a search URL</p>
 </ul>
 <p class="incremental">Try writing this function. Put it in <tt class="docutils literal">mashup.py</tt></p>
 </div>
-<div class="slide" id="my-solution">
+<div class="section" id="my-solution">
 <h1>My Solution</h1>
 <p>Here's the one I created:</p>
 <pre class="code python small incremental literal-block">
@@ -331,7 +697,7 @@ formula for a search URL</p>
     <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">encoding</span>
 </pre>
 </div>
-<div class="slide" id="parse-the-results">
+<div class="section" id="parse-the-results">
 <h1>Parse the Results</h1>
 <p>Next, we need a function <tt class="docutils literal">parse_source</tt> to set up HTML for scraping. It will
 need to:</p>
@@ -342,7 +708,7 @@ need to:</p>
 </ul>
 <p class="incremental">Before you start, a word about parsing HTML with BeautifulSoup</p>
 </div>
-<div class="slide" id="parsing-html-with-beautifulsoup">
+<div class="section" id="parsing-html-with-beautifulsoup">
 <h1>Parsing HTML with BeautifulSoup</h1>
 <p>The BeautifulSoup object can be instantiated with a string or a file-like
 object as the sole argument:</p>
@@ -359,7 +725,7 @@ object as the sole argument:</p>
 <p class="incremental">You might want to open the documentation as reference
 (<a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/bs4/doc">http://www.crummy.com/software/BeautifulSoup/bs4/doc</a>)</p>
 </div>
-<div class="slide" id="id1">
+<div class="section" id="id1">
 <h1>My Solution</h1>
 <p>Take a shot at writing this new function in <tt class="docutils literal">mashup.py</tt></p>
 <pre class="code python incremental small literal-block">
@@ -372,7 +738,7 @@ object as the sole argument:</p>
     <span class="k">return</span> <span class="n">parsed</span>
 </pre>
 </div>
-<div class="slide" id="put-it-together">
+<div class="section" id="put-it-together">
 <h1>Put It Together</h1>
 <p>We'll need to make our script do something when run.</p>
 <pre class="code python incremental small literal-block">
@@ -391,7 +757,7 @@ print parsed.prettify()
 </pre>
 </div>
 </div>
-<div class="slide" id="id2">
+<div class="section" id="id2">
 <h1>My Solution</h1>
 <p>Try to come up with the proper code on your own.  Add it to <tt class="docutils literal">mashup.py</tt></p>
 <pre class="code python incremental small literal-block">
@@ -403,7 +769,7 @@ print parsed.prettify()
     <span class="k">print</span> <span class="n">doc</span><span class="o">.</span><span class="n">prettify</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
 </pre>
 </div>
-<div class="slide" id="test-your-work">
+<div class="section" id="test-your-work">
 <h1>Test Your Work</h1>
 <p>Assuming your virtualenv is still active, you should be able to execute the
 script.</p>
@@ -418,7 +784,7 @@ script.</p>
 ...
 </pre>
 </div>
-<div class="slide" id="preserve-the-results">
+<div class="section" id="preserve-the-results">
 <h1>Preserve the Results</h1>
 <p>Try it again, this time redirect the output to a local file, so we can use
 it without needing to hit the craiglist servers each time:</p>
@@ -426,7 +792,7 @@ it without needing to hit the craiglist servers each time:</p>
 (soupenv)$ python mashup.py &gt; craigslist_results.html
 </pre>
 </div>
-<div class="slide" id="finding-the-needle">
+<div class="section" id="finding-the-needle">
 <h1>Finding The Needle</h1>
 <p>Next we find the bits of this pile of HTML that matter to us.</p>
 <p class="incremental">Open your html file in a browser and take a look (w/ dev tools).</p>
@@ -439,7 +805,7 @@ it without needing to hit the craiglist servers each time:</p>
 <li>Relevant price or size data.</li>
 </ul>
 </div>
-<div class="slide" id="pulling-it-out">
+<div class="section" id="pulling-it-out">
 <h1>Pulling it Out</h1>
 <p>We can extract this information now. In BeautifulSoup:</p>
 <ul class="incremental simple">
@@ -455,7 +821,7 @@ tag.find_all(name, attrs, recursive, text, limit, **kwargs)
 </pre>
 </div>
 </div>
-<div class="slide" id="searching-by-css-class">
+<div class="section" id="searching-by-css-class">
 <h1>Searching by CSS Class</h1>
 <p>The items we are looking for are <tt class="docutils literal">p</tt> tags which have the CSS class
 <tt class="docutils literal">row</tt>:</p>
@@ -467,7 +833,7 @@ you can use <tt class="docutils literal">class_</tt>!</p>
 parsed.find_all('p', class_='row')
 </pre>
 </div>
-<div class="slide" id="try-it-out">
+<div class="section" id="try-it-out">
 <h1>Try It Out</h1>
 <p>Let's fire up a python interpreter and get our hands dirty here:</p>
 <pre class="literal-block">
@@ -484,7 +850,7 @@ parsed.find_all('p', class_='row')
 <p class="incremental">That sounds about right. Let's see if we can get only those with location
 data.</p>
 </div>
-<div class="slide" id="filtering-tricks">
+<div class="section" id="filtering-tricks">
 <h1>Filtering Tricks</h1>
 <p>Attribute filters given a <tt class="docutils literal">True</tt> value match tags with that attribute</p>
 <p class="incremental">Location data was in the <tt class="docutils literal"><span class="pre">data-latitude</span></tt> and <tt class="docutils literal"><span class="pre">data-longitude</span></tt> attributes.</p>
@@ -499,7 +865,7 @@ data.</p>
 </pre>
 <p class="incremental">Great.  That worked nicely</p>
 </div>
-<div class="slide" id="parsing-a-row">
+<div class="section" id="parsing-a-row">
 <h1>Parsing a Row</h1>
 <p>Now that we have the rows we want, we need to parse them. We want to preserve:</p>
 <ul class="incremental simple">
@@ -510,7 +876,7 @@ data.</p>
 </ul>
 <p class="incremental">Which parts of a single row contain each of these elements?</p>
 </div>
-<div class="slide" id="extracting-location">
+<div class="section" id="extracting-location">
 <h1>Extracting Location</h1>
 <p>Location data is in the <tt class="docutils literal">data-</tt> attributes we used to filter rows.</p>
 <div class="incremental container">
@@ -527,7 +893,7 @@ data.</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="extracting-description-and-link">
+<div class="section" id="extracting-description-and-link">
 <h1>Extracting Description and Link</h1>
 <p>Where <tt class="docutils literal">find_all</tt> will find many elements, <tt class="docutils literal">find</tt> will only find the first
 that matches the filters you provide.</p>
@@ -550,7 +916,7 @@ that matches the filters you provide.</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="extracting-price-and-size">
+<div class="section" id="extracting-price-and-size">
 <h1>Extracting Price and Size</h1>
 <p>Both price and size are held in the <tt class="docutils literal">l2</tt> span:</p>
 <pre class="code python small literal-block">
@@ -566,7 +932,7 @@ that matches the filters you provide.</p>
 <p class="incremental">But the size element is not. It is a standalone <em>text node</em>.</p>
 <p class="incremental">Try finding it by reading the <tt class="docutils literal">string</tt> property of our <tt class="docutils literal">l2</tt> tag.</p>
 </div>
-<div class="slide" id="simple-navigation-and-text">
+<div class="section" id="simple-navigation-and-text">
 <h1>Simple Navigation and Text</h1>
 <p>We can get to a simple text node by navigating there.</p>
 <p class="incremental">You can navigate up, down and across document nodes.</p>
@@ -582,7 +948,7 @@ level:</p>
 <p class="incremental">You may have noticed that we keep using <tt class="docutils literal">strip</tt>. There are two reasons for
 this.</p>
 </div>
-<div class="slide" id="the-navigablestring-element">
+<div class="section" id="the-navigablestring-element">
 <h1>The NavigableString Element</h1>
 <p>The most obvious reason is that we don't want extra whitespace.</p>
 <p class="incremental">The second reason is more subtle. The values returned by <tt class="docutils literal">string</tt> are
@@ -596,7 +962,7 @@ this.</p>
 </div>
 <p class="incremental">Calling <tt class="docutils literal">strip</tt> or casting them to <tt class="docutils literal">unicode</tt> converts them, saving memory</p>
 </div>
-<div class="slide" id="put-it-all-together">
+<div class="section" id="put-it-all-together">
 <h1>Put It All Together</h1>
 <p>Okay, a challenge.  Combine everything we've done into a function that:</p>
 <ul class="incremental simple">
@@ -611,7 +977,7 @@ this.</p>
 <p class="incremental">Put this new function into <tt class="docutils literal">mashup.py</tt> and call it from <tt class="docutils literal">__main__</tt>,
 printing the result</p>
 </div>
-<div class="slide" id="break-time">
+<div class="section" id="break-time">
 <h1>Break Time</h1>
 <p>Once you have this working, take a break.</p>
 <p class="incremental">When we return, we'll try a saner approach to getting data from online</p>
@@ -620,7 +986,7 @@ printing the result</p>
 <p><a class="reference external" href="http://www.walkscore.com/professional/api.php">http://www.walkscore.com/professional/api.php</a></p>
 </div>
 </div>
-<div class="slide" id="id3">
+<div class="section" id="id3">
 <h1>My Solution</h1>
 <pre class="code python small incremental literal-block">
 <span class="k">def</span> <span class="nf">extract_listings</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
@@ -642,7 +1008,7 @@ printing the result</p>
         <span class="k">yield</span> <span class="n">listing</span>
 </pre>
 </div>
-<div class="slide" id="id4">
+<div class="section" id="id4">
 <h1>My Solution</h1>
 <pre class="code python small literal-block">
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
@@ -654,7 +1020,7 @@ printing the result</p>
         <span class="k">print</span> <span class="n">listing</span>
 </pre>
 </div>
-<div class="slide" id="another-approach">
+<div class="section" id="another-approach">
 <h1>Another Approach</h1>
 <p>Scraping web pages is tedious and inherently brittle</p>
 <p class="incremental">The owner of the website updates their layout, your code breaks</p>
@@ -662,7 +1028,7 @@ printing the result</p>
 fashion</p>
 <p class="incremental center"><strong>Web Services</strong></p>
 </div>
-<div class="slide" id="web-services">
+<div class="section" id="web-services">
 <h1>Web Services</h1>
 <p>&quot;a software system designed to support interoperable machine-to-machine
 interaction over a network&quot; - W3C</p>
@@ -671,7 +1037,7 @@ interaction over a network&quot; - W3C</p>
 <li>returns structured data</li>
 </ul>
 </div>
-<div class="slide" id="early-web-services">
+<div class="section" id="early-web-services">
 <h1>Early Web Services</h1>
 <p>RSS is one of the earliest forms of Web Services</p>
 <ul class="simple">
@@ -684,7 +1050,7 @@ content</p>
 <p class="incremental">Implemented in pure HTTP.  Returns XML</p>
 <p class="incremental"><strong>Atom</strong> is a competing, but similar standard</p>
 </div>
-<div class="slide" id="rss-document">
+<div class="section" id="rss-document">
 <h1>RSS Document</h1>
 <pre class="tiny literal-block">
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
@@ -709,7 +1075,7 @@ content</p>
 &lt;/rss&gt;
 </pre>
 </div>
-<div class="slide" id="xml-rpc">
+<div class="section" id="xml-rpc">
 <h1>XML-RPC</h1>
 <p>RSS provides a pre-defined data set, can we also allow <em>calling procedures</em> to
 get more dynamic data?</p>
@@ -722,7 +1088,7 @@ get more dynamic data?</p>
 <p class="incremental">There is an interactive example of this at the end of this session. We will
 not go through it here, though.</p>
 </div>
-<div class="slide" id="beyond-xml-rpc">
+<div class="section" id="beyond-xml-rpc">
 <h1>Beyond XML-RPC</h1>
 <ul class="incremental simple">
 <li>XML-RPC allows introspection</li>
@@ -737,7 +1103,7 @@ not go through it here, though.</p>
 </ul>
 <p class="incremental center"><strong>Enter SOAP: Simple Object Access Protocol</strong></p>
 </div>
-<div class="slide" id="soap">
+<div class="section" id="soap">
 <h1>SOAP</h1>
 <p>SOAP extends XML-RPC in a couple of useful ways:</p>
 <ul class="incremental simple">
@@ -750,7 +1116,7 @@ allows the inclusion of a <strong>header</strong> with system meta-data that can
 by the application</li>
 </ul>
 </div>
-<div class="slide" id="soap-in-python">
+<div class="section" id="soap-in-python">
 <h1>SOAP in Python</h1>
 <p>There is no standard library module that supports SOAP directly.</p>
 <ul class="incremental simple">
@@ -762,7 +1128,7 @@ by the application</li>
 end of this session.</p>
 <p class="incremental">But we're going to move on</p>
 </div>
-<div class="slide" id="afterword">
+<div class="section" id="afterword">
 <h1>Afterword</h1>
 <p>SOAP (and XML-RPC) have some problems:</p>
 <ul class="incremental simple">
@@ -772,11 +1138,11 @@ end of this session.</p>
 </ul>
 <p class="incremental">Suds is the best we have, and it hasn't been updated since Sept. 2010.</p>
 </div>
-<div class="slide" id="if-not-xml-then-what">
+<div class="section" id="if-not-xml-then-what">
 <h1>If Not XML, Then What?</h1>
 <p class="big-centered incremental"><strong>JSON</strong></p>
 </div>
-<div class="slide" id="json">
+<div class="section" id="json">
 <h1>JSON</h1>
 <p>JavaScript Object Notation:</p>
 <ul class="incremental simple">
@@ -791,7 +1157,7 @@ end of this session.</p>
 </ul>
 <p class="center incremental">pythonic, no?</p>
 </div>
-<div class="slide" id="json-data-types">
+<div class="section" id="json-data-types">
 <h1>JSON Data Types</h1>
 <p>JSON provides a few basic data types (see <a class="reference external" href="http://json.org/">http://json.org/</a>):</p>
 <ul class="incremental simple">
@@ -804,7 +1170,7 @@ end of this session.</p>
 </ul>
 <p class="incremental center"><strong>No date type? OMGWTF??!!1!1</strong></p>
 </div>
-<div class="slide" id="dates-in-json">
+<div class="section" id="dates-in-json">
 <h1>Dates in JSON</h1>
 <p class="incremental">Option 1 - Unix Epoch Time (number):</p>
 <pre class="code python small incremental literal-block">
@@ -819,7 +1185,7 @@ end of this session.</p>
 <span class="s">'2013-01-14T17:18:10.727240'</span>
 </pre>
 </div>
-<div class="slide" id="json-in-python">
+<div class="section" id="json-in-python">
 <h1>JSON in Python</h1>
 <p>You can encode python to json, and decode json back to python:</p>
 <pre class="code python small literal-block">
@@ -837,7 +1203,7 @@ end of this session.</p>
 </pre>
 <p class="incremental">Customizing the encoder or decoder class allows for specialized serializations</p>
 </div>
-<div class="slide" id="id5">
+<div class="section" id="id5">
 <h1>JSON in Python</h1>
 <p>the json module also supports reading and writing to <em>file-like objects</em> via
 <tt class="docutils literal">json.dump(fp)</tt> and <tt class="docutils literal">json.load(fp)</tt> (note the missing 's')</p>
@@ -845,26 +1211,26 @@ end of this session.</p>
 <em>file-like</em></p>
 <p class="incremental">This usage can be much more memory-friendly with large files/sources</p>
 </div>
-<div class="slide" id="what-about-wsdl">
+<div class="section" id="what-about-wsdl">
 <h1>What about WSDL?</h1>
 <p>SOAP was invented in part to provide completely machine-readable
 interoperability.</p>
 <p class="incremental">Does that really work in real life?</p>
 <p class="incremental center">Hardly ever</p>
 </div>
-<div class="slide" id="id6">
+<div class="section" id="id6">
 <h1>What about WSDL?</h1>
 <p>Another reason was to provide extensibility via custom types</p>
 <p class="incremental">Does that really work in real life?</p>
 <p class="incremental center">Hardly ever</p>
 </div>
-<div class="slide" id="why-do-all-the-work">
+<div class="section" id="why-do-all-the-work">
 <h1>Why Do All The Work?</h1>
 <p>So, if neither of these goals is really achieved by using SOAP, why pay all
 the overhead required to use the protocol?</p>
 <p class="incremental">Enter REST</p>
 </div>
-<div class="slide" id="rest">
+<div class="section" id="rest">
 <h1>REST</h1>
 <p class="center">Representational State Transfer</p>
 <ul class="incremental simple">
@@ -875,7 +1241,7 @@ the overhead required to use the protocol?</p>
 <p class="image-credit incremental">* Seriously. Buy it and read
 (&lt;<a class="reference external" href="http://www.crummy.com/writing/RESTful-Web-Services/">http://www.crummy.com/writing/RESTful-Web-Services/</a>)</p>
 </div>
-<div class="slide" id="a-comparison">
+<div class="section" id="a-comparison">
 <h1>A Comparison</h1>
 <p>The XML-RCP/SOAP way:</p>
 <ul class="incremental small simple">
@@ -894,14 +1260,14 @@ the overhead required to use the protocol?</p>
 <li>DELETE /comment/&lt;id&gt; HTTP/1.1</li>
 </ul>
 </div>
-<div class="slide" id="roa">
+<div class="section" id="roa">
 <h1>ROA</h1>
 <p>This is <strong>Resource Oriented Architecture</strong></p>
 <p class="incremental">The URL represents the <em>resource</em> we are working with</p>
 <p class="incremental">The HTTP Method represents the <tt class="docutils literal">action</tt> to be taken</p>
 <p class="incremental">The HTTP Code returned tells us the <tt class="docutils literal">result</tt> (whether success or failure)</p>
 </div>
-<div class="slide" id="http-codes-revisited">
+<div class="section" id="http-codes-revisited">
 <h1>HTTP Codes Revisited</h1>
 <p class="small">POST /comment HTTP/1.1  (creating a new comment):</p>
 <ul class="incremental small simple">
@@ -920,18 +1286,18 @@ the overhead required to use the protocol?</p>
 <li>Success: <tt class="docutils literal">HTTP/1.1 204 No Content</tt></li>
 </ul>
 </div>
-<div class="slide" id="http-is-stateless">
+<div class="section" id="http-is-stateless">
 <h1>HTTP Is Stateless</h1>
 <p>No individual request may be assumed to know anything about any other request.</p>
 <p class="incremental">All the required information representing the possible actions to take <em>should
 be present in every response</em>.</p>
 <p class="incremental big-centered">Thus:  HATEOAS</p>
 </div>
-<div class="slide" id="hateoas">
+<div class="section" id="hateoas">
 <h1>HATEOAS</h1>
 <p class="big-centered">Hypermedia As The Engine Of Application State</p>
 </div>
-<div class="slide" id="applications-are-state-engines">
+<div class="section" id="applications-are-state-engines">
 <h1>Applications are State Engines</h1>
 <p>A State Engine is a machine that provides <em>states</em> for a resource to be in and
 <em>transitions</em> to move resources between states.  A Restful api should:</p>
@@ -941,13 +1307,13 @@ be present in every response</em>.</p>
 <li>provide all this in <em>each</em> HTTP response</li>
 </ul>
 </div>
-<div class="slide" id="playing-with-rest">
+<div class="section" id="playing-with-rest">
 <h1>Playing With REST</h1>
 <p>Let's take a moment to play with REST.</p>
 <p class="incremental">We'll use a common, public API provided by Google.</p>
 <p class="incremental center"><strong>Geocoding</strong></p>
 </div>
-<div class="slide" id="geocoding-with-google-apis">
+<div class="section" id="geocoding-with-google-apis">
 <h1>Geocoding with Google APIs</h1>
 <p><a class="reference external" href="https://developers.google.com/maps/documentation/geocoding">https://developers.google.com/maps/documentation/geocoding</a></p>
 <div class="incremental container">
@@ -969,7 +1335,7 @@ be present in every response</em>.</p>
 <span class="o">...</span>     <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre>
 </div>
-<div class="slide" id="reverse-geocoding">
+<div class="section" id="reverse-geocoding">
 <h1>Reverse Geocoding</h1>
 <p>You can do the same thing in reverse, supply latitude and longitude and get
 back address information:</p>
@@ -985,7 +1351,7 @@ back address information:</p>
 <p class="incremental">Notice that there are a number of results returned, ordered from most specific
 to least.</p>
 </div>
-<div class="slide" id="mash-it-up">
+<div class="section" id="mash-it-up">
 <h1>Mash It Up</h1>
 <p>Let's add a new function to <tt class="docutils literal">mashup.py</tt>.  It will:</p>
 <ul class="incremental simple">
@@ -997,7 +1363,7 @@ to least.</p>
 </ul>
 <p class="incremental">Call it <tt class="docutils literal">add_address</tt></p>
 </div>
-<div class="slide" id="id7">
+<div class="section" id="id7">
 <h1>My Solution</h1>
 <pre class="code python small incremental literal-block">
 <span class="c"># add an import</span>
@@ -1022,7 +1388,7 @@ to least.</p>
     <span class="k">return</span> <span class="n">listing</span>
 </pre>
 </div>
-<div class="slide" id="add-address-to-output">
+<div class="section" id="add-address-to-output">
 <h1>Add Address to Output</h1>
 <p>Go ahead and bolt the new function into our <tt class="docutils literal">__main__</tt> block:</p>
 <pre class="code python small incremental literal-block">
@@ -1046,7 +1412,7 @@ to least.</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="one-more-step">
+<div class="section" id="one-more-step">
 <h1>One More Step</h1>
 <p>I'm a big fan of walking places.</p>
 <p class="incremental">So I'd like to find an apartment that is located somewhere 'walkable'</p>
@@ -1054,7 +1420,7 @@ to least.</p>
 <p class="incremental"><a class="reference external" href="http://www.walkscore.com/professional/api.php">http://www.walkscore.com/professional/api.php</a></p>
 <p class="incremental">If you haven't already, sign up for an API key now.</p>
 </div>
-<div class="slide" id="getting-a-walk-score">
+<div class="section" id="getting-a-walk-score">
 <h1>Getting a Walk Score</h1>
 <p>The API documentation tells us we have to provide lat, lon and address to get
 a walk score, along with our API key.</p>
@@ -1062,7 +1428,7 @@ a walk score, along with our API key.</p>
 <p class="incremental">Let's poke at it and see what we get back</p>
 <p class="incremental">Fire up your virtualenv Python interpreter again</p>
 </div>
-<div class="slide" id="making-an-api-call">
+<div class="section" id="making-an-api-call">
 <h1>Making an API Call</h1>
 <pre class="literal-block">
 (soupenv)$ python
@@ -1083,7 +1449,7 @@ a walk score, along with our API key.</p>
 <span class="o">...</span>     <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre>
 </div>
-<div class="slide" id="id8">
+<div class="section" id="id8">
 <h1>Mash It Up</h1>
 <p>Add a function to <tt class="docutils literal">mashup.py</tt> that:</p>
 <ul class="incremental simple">
@@ -1095,7 +1461,7 @@ a walk score, along with our API key.</p>
 <p class="incremental">Call the function <tt class="docutils literal">add_walkscore</tt></p>
 <p class="incremental">Bolt it into our script's <tt class="docutils literal">__main__</tt> block where it fits best</p>
 </div>
-<div class="slide" id="id9">
+<div class="section" id="id9">
 <h1>My Solution</h1>
 <pre class="code python small incremental literal-block">
 <span class="k">def</span> <span class="nf">add_walkscore</span><span class="p">(</span><span class="n">listing</span><span class="p">):</span>
@@ -1118,7 +1484,7 @@ a walk score, along with our API key.</p>
     <span class="k">return</span> <span class="n">listing</span>
 </pre>
 </div>
-<div class="slide" id="my-results">
+<div class="section" id="my-results">
 <h1>My Results</h1>
 <pre class="code python small literal-block">
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
@@ -1137,7 +1503,7 @@ a walk score, along with our API key.</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="wrap-up">
+<div class="section" id="wrap-up">
 <h1>Wrap Up</h1>
 <p>We've built a simple mashup combining data from three different sources.</p>
 <p class="incremental">As a result we can now make a listing of apartments ranked by the walkability
@@ -1145,14 +1511,14 @@ of their neighborhood.</p>
 <p class="incremental">What other data sources might we use? Check out
 <a class="reference external" href="http://www.programmableweb.com/apis/directory">http://www.programmableweb.com/apis/directory</a> to see some of the possibilities</p>
 </div>
-<div class="slide" id="addenda">
+<div class="section" id="addenda">
 <h1>Addenda</h1>
 <p>Altough we do not have class time to do walkthrough examples of using XML-RPC
 and SOAP, I have provided exercises in each as an addenda to this session. If
 you have the time and the interest, please try them out.</p>
 <p class="center"><a class="reference external" href="session03-addenda.html">Web Service API Addenda</a></p>
 </div>
-<div class="slide" id="homework">
+<div class="section" id="homework">
 <h1>Homework</h1>
 <p>For your homework this week, you'll be creating a mashup of your own.</p>
 <p class="incremental">Use the programmable web api directory from above as a source of inspiration.</p>
@@ -1160,7 +1526,7 @@ you have the time and the interest, please try them out.</p>
 tickles your fancy.</p>
 <p class="incremental">Your results need not look pretty. Focus on data acquisition and processing.</p>
 </div>
-<div class="slide" id="submitting-your-homework">
+<div class="section" id="submitting-your-homework">
 <h1>Submitting Your Homework</h1>
 <p>To submit your homework:</p>
 <ul>
@@ -1180,10 +1546,15 @@ request.</p>
 </li>
 </ul>
 </div>
-<div class="slide" id="extra-credit">
+<div class="section" id="extra-credit">
 <h1>Extra Credit</h1>
 <p>Bonus points if you write unit tests for the elements of your mashup.</p>
 </div>
+</div>
+<div class="footer">
+<hr class="footer" />
+<a class="reference external" href="http://github.com/cewing/training.python_web">View document source</a>.
+
 </div>
 </body>
 </html>
