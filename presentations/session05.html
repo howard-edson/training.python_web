@@ -1047,7 +1047,6 @@ Look carefully at the logic. What happens?</p>
 <h1>Provide a Form</h1>
 <pre class="code jinja small literal-block">
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">body</span> <span class="cp">%}</span><span class="x">  &lt;!-- already there --&gt;
-</span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">session.logged_in</span> <span class="cp">%}</span><span class="x">
 &lt;form action=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">'add_entry'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot; method=&quot;POST&quot; class=&quot;add_entry&quot;&gt;
   &lt;div class=&quot;field&quot;&gt;
     &lt;label for=&quot;title&quot;&gt;Title&lt;/label&gt;
@@ -1061,7 +1060,6 @@ Look carefully at the logic. What happens?</p>
     &lt;input type=&quot;submit&quot; value=&quot;Share&quot; name=&quot;Share&quot;/&gt;
   &lt;/div&gt;
 &lt;/form&gt;
-</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">
 &lt;h2&gt;Posts&lt;/h2&gt;  &lt;!-- already there --&gt;</span>
 </pre>
 </div>
@@ -1102,6 +1100,12 @@ Open <tt class="docutils literal">layout.html</tt> and add the following:</p>
   &lt;link href=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">'static'</span><span class="o">,</span> <span class="nv">filename</span><span class="o">=</span><span class="s1">'style.css'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
 &lt;/head&gt;</span>
 </pre>
+</div>
+<div class="slide" id="reap-the-rewards">
+<h1>Reap the Rewards</h1>
+<p>Make sure that your <cite>microblog</cite> folder has a <cite>static</cite> folder inside it, and
+that the <cite>styles.css</cite> file is in it.</p>
+<p class="incremental">Then, reload your web browser and see the difference a bit of style can make.</p>
 </div>
 <div class="slide" id="homework">
 <h1>Homework</h1>
