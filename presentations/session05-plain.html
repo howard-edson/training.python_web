@@ -4,38 +4,341 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
-<meta name="version" content="S5 1.1" />
 <title>Python Web Programming</title>
-<link rel="stylesheet" href="ui/uw_pce_theme/pretty.css" type="text/css" />
-<!-- configuration parameters -->
-<meta name="defaultView" content="slideshow" />
-<meta name="controlVis" content="hidden" />
-<!-- style sheet links -->
-<script src="ui/uw_pce_theme/slides.js" type="text/javascript"></script>
-<link rel="stylesheet" href="ui/uw_pce_theme/slides.css"
-      type="text/css" media="projection" id="slideProj" />
-<link rel="stylesheet" href="ui/uw_pce_theme/outline.css"
-      type="text/css" media="screen" id="outlineStyle" />
-<link rel="stylesheet" href="ui/uw_pce_theme/print.css"
-      type="text/css" media="print" id="slidePrint" />
-<link rel="stylesheet" href="ui/uw_pce_theme/opera.css"
-      type="text/css" media="projection" id="operaFix" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
 </head>
 <body>
-<div class="layout">
-<div id="controls"></div>
-<div id="currentSlide"></div>
-<div id="header">
-
-</div>
-<div id="footer">
-<h1>Python Web Programming</h1>
-<h2><a class="reference external" href="http://github.com/cewing/training.python_web">View document source</a>.
-</h2>
-</div>
-</div>
-<div class="presentation">
-<div class="slide" id="slide0">
+<div class="document" id="python-web-programming">
 <h1 class="title">Python Web Programming</h1>
 
 <img alt="img/bike.jpg" class="align-left" src="img/bike.jpg" style="width: 50%;" />
@@ -47,9 +350,7 @@
 <div class="line">-- James Tauber, PyCon 2007</div>
 </div>
 <p class="image-credit">image: Britanglishman <a class="reference external" href="http://www.flickr.com/photos/britanglishman/5999131365/">http://www.flickr.com/photos/britanglishman/5999131365/</a> - CC-BY</p>
-
-</div>
-<div class="slide" id="a-moment-to-reflect">
+<div class="section" id="a-moment-to-reflect">
 <h1>A Moment to Reflect</h1>
 <p>We've been at this for a couple of days now.  We've learned a great deal:</p>
 <ul class="incremental simple">
@@ -61,13 +362,13 @@
 <p class="incremental">Everything we do from here out will be based on tools built using these
 <em>foundational technologies</em>.</p>
 </div>
-<div class="slide" id="from-now-on">
+<div class="section" id="from-now-on">
 <h1>From Now On</h1>
 <p>Think of everything we do as sitting on top of WSGI</p>
 <p class="incremental">This may not <em>actually</em> be true</p>
 <p class="incremental">But we will always be working at that level of abstraction.</p>
 </div>
-<div class="slide" id="frameworks">
+<div class="section" id="frameworks">
 <h1>Frameworks</h1>
 <p>From Wikipedia:</p>
 <p class="center incremental">A web application framework (WAF) is a software framework that is designed to
@@ -77,7 +378,7 @@ activities performed in Web development. For example, many frameworks provide
 libraries for database access, templating frameworks and session management,
 and they often promote code reuse</p>
 </div>
-<div class="slide" id="what-does-that-mean">
+<div class="section" id="what-does-that-mean">
 <h1>What Does That <em>Mean</em>?</h1>
 <p>You use a framework to build an application.</p>
 <p class="incremental">A framework allows you to build different kinds of applications.</p>
@@ -86,7 +387,7 @@ rest.</p>
 <p class="incremental">Think back over the last four sessions. What were your pain points? Which bits
 do you wish you didn't have to think about?</p>
 </div>
-<div class="slide" id="level-of-abstraction">
+<div class="section" id="level-of-abstraction">
 <h1>Level of Abstraction</h1>
 <p>This last part is important when it comes to choosing a framework</p>
 <ul class="incremental simple">
@@ -96,11 +397,11 @@ do you wish you didn't have to think about?</p>
 <li><em>Every</em> framework makes <em>different</em> choices</li>
 </ul>
 </div>
-<div class="slide" id="impedance-mismatch">
+<div class="section" id="impedance-mismatch">
 <h1>Impedance Mismatch</h1>
 <p class="big-centered">Don't Fight the Framework</p>
 </div>
-<div class="slide" id="python-web-frameworks">
+<div class="section" id="python-web-frameworks">
 <h1>Python Web Frameworks</h1>
 <p>There are scores of 'em (this is a partial list).</p>
 <table border="1" class="incremental invisible small center docutils">
@@ -169,7 +470,7 @@ do you wish you didn't have to think about?</p>
 </tbody>
 </table>
 </div>
-<div class="slide" id="choosing-a-framework">
+<div class="section" id="choosing-a-framework">
 <h1>Choosing a Framework</h1>
 <p>Many folks will tell you &quot;&lt;XYZ&gt; is the <strong>best</strong> framework&quot;.</p>
 <p class="incremental">In most cases, what they really mean is &quot;I know how to use &lt;XYZ&gt;&quot;</p>
@@ -177,7 +478,7 @@ do you wish you didn't have to think about?</p>
 <p class="incremental">What they usually forget is that everyone's brain (and everyone's use-case) is
 different.</p>
 </div>
-<div class="slide" id="cris-first-law-of-frameworks">
+<div class="section" id="cris-first-law-of-frameworks">
 <h1>Cris' First Law of Frameworks</h1>
 <p class="center"><strong>Pick the Right Tool for the Job</strong></p>
 <p class="incremental">First Corollary</p>
@@ -185,12 +486,12 @@ different.</p>
 correctly.</p>
 <p class="incremental center">But how do you know which that one is?</p>
 </div>
-<div class="slide" id="cris-second-law-of-frameworks">
+<div class="section" id="cris-second-law-of-frameworks">
 <h1>Cris' Second Law of Frameworks</h1>
 <p class="big-centered">You can't know unless you try</p>
 <p class="incremental center">so let's try</p>
 </div>
-<div class="slide" id="from-your-homework">
+<div class="section" id="from-your-homework">
 <h1>From Your Homework</h1>
 <p>During the week, you walked through an introduction to the <em>Flask</em> web
 framework. You wrote a file that looked like this:</p>
@@ -206,13 +507,13 @@ framework. You wrote a file that looked like this:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre>
 </div>
-<div class="slide" id="the-outcome">
+<div class="section" id="the-outcome">
 <h1>The outcome</h1>
 <p>When you ran this file, you should have seen something like this in your
 browser:</p>
 <img alt="img/flask_hello.png" class="align-center" src="img/flask_hello.png" style="width: 80%;" />
 </div>
-<div class="slide" id="what-s-happening-here">
+<div class="section" id="what-s-happening-here">
 <h1>What's Happening Here?</h1>
 <p>Flask the framework provides a Python class called <cite>Flask</cite>. This class
 functions as a single <em>application</em> in the WSGI sense.</p>
@@ -221,7 +522,7 @@ functions as a single <em>application</em> in the WSGI sense.</p>
 <p class="incremental">It has to call the <em>start_response</em> method, providing status and headers.</p>
 <p class="incremental">And it has to return an <em>iterable</em> that represents the HTTP response body.</p>
 </div>
-<div class="slide" id="under-the-covers">
+<div class="section" id="under-the-covers">
 <h1>Under the Covers</h1>
 <p>In Python, an object is a <em>callable</em> if it has a <tt class="docutils literal">__call__</tt> method.</p>
 <div class="incremental container">
@@ -235,7 +536,7 @@ functions as a single <em>application</em> in the WSGI sense.</p>
 <p class="incremental">As you can see, it calls another method, called <tt class="docutils literal">wsgi_app</tt>.  Let's follow
 this down...</p>
 </div>
-<div class="slide" id="flask-wsgi-app">
+<div class="section" id="flask-wsgi-app">
 <h1>Flask.wsgi_app</h1>
 <pre class="code python small literal-block">
 <span class="k">def</span> <span class="nf">wsgi_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
@@ -256,7 +557,7 @@ this down...</p>
 </pre>
 <p class="incremental"><tt class="docutils literal">response</tt> is another WSGI app.  <tt class="docutils literal">Flask</tt> is actually <em>middleware</em></p>
 </div>
-<div class="slide" id="abstraction-layers">
+<div class="section" id="abstraction-layers">
 <h1>Abstraction Layers</h1>
 <p>Finally, way down in a package called <em>werkzeug</em>, we find this response object
 and it's <tt class="docutils literal">__call__</tt> method:</p>
@@ -274,7 +575,7 @@ and it's <tt class="docutils literal">__call__</tt> method:</p>
     <span class="k">return</span> <span class="n">app_iter</span>
 </pre>
 </div>
-<div class="slide" id="common-threads">
+<div class="section" id="common-threads">
 <h1>Common Threads</h1>
 <p>All Python web frameworks that operate under the WSGI spec will do this same
 sort of thing.</p>
@@ -283,7 +584,7 @@ sort of thing.</p>
 thing that really matters to you.</p>
 <p class="incremental">Getting input from a request, and returning a response.</p>
 </div>
-<div class="slide" id="a-quick-reminder">
+<div class="section" id="a-quick-reminder">
 <h1>A Quick Reminder</h1>
 <p>Over the week, in addition to walking through a Flask intro you did two other
 tasks:</p>
@@ -292,14 +593,14 @@ to use <tt class="docutils literal">sqlite3</tt> to store and retrieve data.</p>
 <p class="incremental">You also read a bit about <tt class="docutils literal">Jinja2</tt>, the templating language Flask
 uses out of the box, and ran some code to explore its abilities.</p>
 </div>
-<div class="slide" id="moving-on">
+<div class="section" id="moving-on">
 <h1>Moving On</h1>
 <p>Now it is time to put all that together.</p>
 <p class="incremental">We'll spend this session building a &quot;microblog&quot; application.</p>
 <p class="incremental">Let's dive right in.</p>
 <p class="incremental">Start by activating your Flask virtualenv</p>
 </div>
-<div class="slide" id="our-database">
+<div class="section" id="our-database">
 <h1>Our Database</h1>
 <p>We need first to define what an <em>entry</em> for our microblog might look like.</p>
 <p class="incremental">Let's keep it a simple as possible for now.</p>
@@ -314,7 +615,7 @@ uses out of the box, and ran some code to explore its abilities.</p>
 <span class="p">);</span>
 </pre>
 </div>
-<div class="slide" id="app-configuration">
+<div class="section" id="app-configuration">
 <h1>App Configuration</h1>
 <p>For any but the most trivial applications, you'll need some configuration.</p>
 <p class="incremental">Flask provides a number of ways of loading configuration.  We'll be using a
@@ -325,7 +626,7 @@ config file</p>
 <span class="n">DATABASE</span> <span class="o">=</span> <span class="s">'microblog.db'</span>
 </pre>
 </div>
-<div class="slide" id="our-app-skeleton">
+<div class="section" id="our-app-skeleton">
 <h1>Our App Skeleton</h1>
 <p>Finally, we'll need a basic app skeleton to work from.</p>
 <p class="incremental">Create one more file <tt class="docutils literal">microblog.py</tt> in the same directory, and enter the
@@ -341,7 +642,7 @@ following:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre>
 </div>
-<div class="slide" id="test-your-work">
+<div class="section" id="test-your-work">
 <h1>Test Your Work</h1>
 <p>This is enough to get us off the ground.</p>
 <div class="incremental container">
@@ -355,7 +656,7 @@ following:</p>
 <p class="incremental">Then point your browser at <a class="reference external" href="http://localhost:5000/">http://localhost:5000/</a></p>
 <p class="incremental">What do you see in your browser?  In the terminal?  Why?</p>
 </div>
-<div class="slide" id="creating-the-database">
+<div class="section" id="creating-the-database">
 <h1>Creating the Database</h1>
 <p>Quit the app with <tt class="docutils literal">^C</tt>. Then return to <tt class="docutils literal">microblog.py</tt> and add the
 following:</p>
@@ -370,7 +671,7 @@ following:</p>
 <p class="incremental">This should look familiar. What will happen?</p>
 <p class="incremental">This convenience method allows us to write our very first test.</p>
 </div>
-<div class="slide" id="tests-and-tdd">
+<div class="section" id="tests-and-tdd">
 <h1>Tests and TDD</h1>
 <p class="center"><strong>If it isn't tested, it's broken</strong></p>
 <p class="incremental">We are going to write tests at every step of this exercise using the
@@ -378,7 +679,7 @@ following:</p>
 <p class="incremental">In your <tt class="docutils literal">microblog</tt> folder create a <tt class="docutils literal">microblog_tests.py</tt> file.</p>
 <p class="incremental">Open it in your editor.</p>
 </div>
-<div class="slide" id="testing-setup">
+<div class="section" id="testing-setup">
 <h1>Testing Setup</h1>
 <p>Add the following to provide minimal test setup.</p>
 <pre class="code python small literal-block">
@@ -398,7 +699,7 @@ following:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">microblog</span><span class="o">.</span><span class="n">app</span>
 </pre>
 </div>
-<div class="slide" id="testing-teardown">
+<div class="section" id="testing-teardown">
 <h1>Testing Teardown</h1>
 <p><strong>Add</strong> this method to your existing test case class to tear down after each
 test:</p>
@@ -411,7 +712,7 @@ test:</p>
         <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">microblog</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">'DATABASE'</span><span class="p">])</span>
 </pre>
 </div>
-<div class="slide" id="make-tests-runnable">
+<div class="section" id="make-tests-runnable">
 <h1>Make Tests Runnable</h1>
 <p>Finally, we make our tests runnable by adding a <tt class="docutils literal">main</tt> block:</p>
 <div class="incremental container">
@@ -423,7 +724,7 @@ test:</p>
 </div>
 <p class="incremental">Now, we're ready to add our first actual test..</p>
 </div>
-<div class="slide" id="test-database-setup">
+<div class="section" id="test-database-setup">
 <h1>Test Database Setup</h1>
 <p>We'd like to test that our database is correctly initialized. The schema has
 one table with three columns. Let's test that.</p>
@@ -438,7 +739,7 @@ one table with three columns. Let's test that.</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="run-the-tests">
+<div class="section" id="run-the-tests">
 <h1>Run the Tests</h1>
 <p>We can now run our test module:</p>
 <pre class="small literal-block">
@@ -458,7 +759,7 @@ Ran 1 test in 0.011s
 FAILED (failures=1)
 </pre>
 </div>
-<div class="slide" id="make-the-test-pass">
+<div class="section" id="make-the-test-pass">
 <h1>Make the Test Pass</h1>
 <p>This is an expected failure. Why?</p>
 <div class="incremental container">
@@ -477,7 +778,7 @@ database schema:</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="initialize-the-db-in-tests">
+<div class="section" id="initialize-the-db-in-tests">
 <h1>Initialize the DB in Tests</h1>
 <p>We also need to call that function in our <tt class="docutils literal">microblog_tests.py</tt> to set up the
 database schema for each test.</p>
@@ -493,11 +794,11 @@ database schema for each test.</p>
 (flaskenv)$ python microblog_tests.py
 </pre>
 </div>
-<div class="slide" id="success">
+<div class="section" id="success">
 <h1>Success?</h1>
 <p class="big-centered incremental">\o/ Wahoooo!</p>
 </div>
-<div class="slide" id="initialize-the-db-irl">
+<div class="section" id="initialize-the-db-irl">
 <h1>Initialize the DB IRL</h1>
 <p>Our test passed, so we have confidence that <tt class="docutils literal">init_db</tt> does what it should</p>
 <p class="incremental">We'll need to have a working database for our app, so let's go ahead and do
@@ -509,7 +810,7 @@ this &quot;in real life&quot;</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="o">^</span><span class="n">D</span>
 </pre>
 </div>
-<div class="slide" id="first-break">
+<div class="section" id="first-break">
 <h1>First Break</h1>
 <p>After you quit the interpreter, you should see <tt class="docutils literal">microblog.db</tt> in your
 directory.</p>
@@ -517,14 +818,14 @@ directory.</p>
 <p class="incremental">When we return, we'll start writing data to our database, and reading it back
 out.</p>
 </div>
-<div class="slide" id="reading-and-writing-data">
+<div class="section" id="reading-and-writing-data">
 <h1>Reading and Writing Data</h1>
 <p>Before the break, we created a function that would initialize our database.</p>
 <p class="incremental">It's time now to think about writing and reading data for our blog.</p>
 <p class="incremental">We'll start by writing tests.</p>
 <p class="incremental">But first, a word or two about the circle of life.</p>
 </div>
-<div class="slide" id="the-request-response-cycle">
+<div class="section" id="the-request-response-cycle">
 <h1>The Request/Response Cycle</h1>
 <p>Every interaction in HTTP is bounded by the interchange of one request and one
 response.</p>
@@ -533,7 +834,7 @@ response.</p>
 back to the client.</p>
 <p class="incremental">This is the lifecycle of an http web application.</p>
 </div>
-<div class="slide" id="managing-db-connections">
+<div class="section" id="managing-db-connections">
 <h1>Managing DB Connections</h1>
 <p>It makes sense to bind the lifecycle of a database connection to this same
 border.</p>
@@ -542,7 +843,7 @@ border.</p>
 are connected to the request/response cycle is up to us.</p>
 <p class="incremental">Happily, Flask <em>does</em> have a way to help us.</p>
 </div>
-<div class="slide" id="request-boundary-decorators">
+<div class="section" id="request-boundary-decorators">
 <h1>Request Boundary Decorators</h1>
 <p>The Flask <em>app</em> provides decorators we can use on our database lifecycle
 functions:</p>
@@ -556,7 +857,7 @@ skipped.</li>
 the end of the cycle, <em>even if</em> an unhandled exception occurs.</li>
 </ul>
 </div>
-<div class="slide" id="managing-our-db">
+<div class="section" id="managing-our-db">
 <h1>Managing our DB</h1>
 <p>Consider the following functions:</p>
 <pre class="code python small literal-block">
@@ -570,14 +871,14 @@ the end of the cycle, <em>even if</em> an unhandled exception occurs.</li>
 </pre>
 <p class="incremental">How does the <tt class="docutils literal">db</tt> object get from one place to the other?</p>
 </div>
-<div class="slide" id="global-context-in-flask">
+<div class="section" id="global-context-in-flask">
 <h1>Global Context in Flask</h1>
 <p>Our flask <tt class="docutils literal">app</tt> is only really instantiated once</p>
 <p class="incremental">This means that anything we tie to it will be shared across all requests.</p>
 <p class="incremental">This is what we call <tt class="docutils literal">global</tt> context.</p>
 <p class="incremental">What happens if two clients make a request at the same time?</p>
 </div>
-<div class="slide" id="local-context-in-flask">
+<div class="section" id="local-context-in-flask">
 <h1>Local Context in Flask</h1>
 <p>Flask provides something it calls a <tt class="docutils literal">local global</tt>: &quot;g&quot;.</p>
 <p class="incremental">This is an object that <em>looks</em> global (you can import it anywhere)</p>
@@ -585,7 +886,7 @@ the end of the cycle, <em>even if</em> an unhandled exception occurs.</li>
 <p class="incremental">Resources tied to this object are <em>not</em> shared among requests. Perfect for
 things like a database connection.</p>
 </div>
-<div class="slide" id="working-db-functions">
+<div class="section" id="working-db-functions">
 <h1>Working DB Functions</h1>
 <p>Add the following, working methods to <tt class="docutils literal">microblog.py</tt>:</p>
 <pre class="code python small literal-block">
@@ -606,7 +907,7 @@ things like a database connection.</p>
         <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre>
 </div>
-<div class="slide" id="writing-blog-entries">
+<div class="section" id="writing-blog-entries">
 <h1>Writing Blog Entries</h1>
 <p>Our microblog will have <em>entries</em>. We've set up a simple database schema to
 represent them.</p>
@@ -618,7 +919,7 @@ represent them.</p>
 </ul>
 <p class="incremental">Let's write a test of a function that would do that.</p>
 </div>
-<div class="slide" id="test-writing-entries">
+<div class="section" id="test-writing-entries">
 <h1>Test Writing Entries</h1>
 <p>The database connection is bound by a request. We'll need to mock one (in
 <tt class="docutils literal">microblog_tests.py</tt>)</p>
@@ -638,7 +939,7 @@ represent them.</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="run-your-test">
+<div class="section" id="run-your-test">
 <h1>Run Your Test</h1>
 <pre class="small literal-block">
 (flaskenv)$ python microblog_tests.py
@@ -658,7 +959,7 @@ FAILED (errors=1)
 </pre>
 <p class="incremental">Great.  Two tests, one passing.</p>
 </div>
-<div class="slide" id="make-it-pass">
+<div class="section" id="make-it-pass">
 <h1>Make It Pass</h1>
 <p>Now we are ready to write an entry to our database. Add this function to
 <tt class="docutils literal">microblog.py</tt>:</p>
@@ -678,7 +979,7 @@ Ran 2 tests in 0.146s
 OK
 </pre>
 </div>
-<div class="slide" id="reading-entries">
+<div class="section" id="reading-entries">
 <h1>Reading Entries</h1>
 <p>We'd also like to be able to read the entries in our blog</p>
 <div class="incremental container">
@@ -691,7 +992,7 @@ OK
 </div>
 <p class="incremental">Let's begin by writing tests.</p>
 </div>
-<div class="slide" id="test-reading-entries">
+<div class="section" id="test-reading-entries">
 <h1>Test Reading Entries</h1>
 <p>In <tt class="docutils literal">microblog_tests.py</tt>:</p>
 <pre class="code python small literal-block">
@@ -711,7 +1012,7 @@ OK
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">expected</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">entry</span><span class="p">[</span><span class="s">'text'</span><span class="p">])</span>
 </pre>
 </div>
-<div class="slide" id="run-your-tests">
+<div class="section" id="run-your-tests">
 <h1>Run Your Tests</h1>
 <pre class="small literal-block">
 (flaskenv)$ python microblog_tests.py
@@ -738,7 +1039,7 @@ Ran 4 tests in 0.021s
 FAILED (errors=2)
 </pre>
 </div>
-<div class="slide" id="make-them-pass">
+<div class="section" id="make-them-pass">
 <h1>Make Them Pass</h1>
 <p>Now we have 4 tests, and two fail.</p>
 <p class="incremental">add the <tt class="docutils literal">get_all_entries</tt> function to <tt class="docutils literal">microblog.py</tt>:</p>
@@ -760,7 +1061,7 @@ OK
 </pre>
 </div>
 </div>
-<div class="slide" id="where-we-stand">
+<div class="section" id="where-we-stand">
 <h1>Where We Stand</h1>
 <p>We've moved quite a ways in implementing our microblog:</p>
 <ul class="incremental simple">
@@ -772,11 +1073,11 @@ it does.</li>
 </ul>
 <p class="incremental">We're ready now to put a face on it, so we can see what we're doing!</p>
 </div>
-<div class="slide" id="second-break">
+<div class="section" id="second-break">
 <h1>Second Break</h1>
 <p>But first, let's take a quick break to clear our heads.</p>
 </div>
-<div class="slide" id="templates-in-flask">
+<div class="section" id="templates-in-flask">
 <h1>Templates In Flask</h1>
 <p>We'll start with a detour into templates as they work in Flask</p>
 <div class="incremental container">
@@ -789,7 +1090,7 @@ it does.</li>
 </div>
 <p class="incremental">Flask sets up a proper Jinja2 Environment when you instantiate your <tt class="docutils literal">app</tt>.</p>
 </div>
-<div class="slide" id="flask-environment">
+<div class="section" id="flask-environment">
 <h1>Flask Environment</h1>
 <p>Flask uses the value you pass to the <tt class="docutils literal">app</tt> constructor to calculate the root
 of your application on the filesystem.</p>
@@ -803,7 +1104,7 @@ so:</p>
 </pre>
 </div>
 </div>
-<div class="slide" id="flask-context">
+<div class="section" id="flask-context">
 <h1>Flask Context</h1>
 <p>Keyword arguments you pass to <tt class="docutils literal">render_template</tt> become the <em>context</em> passed
 to the template for rendering.</p>
@@ -818,7 +1119,7 @@ to the template for rendering.</p>
 users (more on this later).</li>
 </ul>
 </div>
-<div class="slide" id="setting-up-our-templates">
+<div class="section" id="setting-up-our-templates">
 <h1>Setting Up Our Templates</h1>
 <p>In your <tt class="docutils literal">microblog</tt> directory, add a new <tt class="docutils literal">templates</tt> directory</p>
 <div class="incremental container">
@@ -839,7 +1140,7 @@ users (more on this later).</li>
 </pre>
 </div>
 </div>
-<div class="slide" id="template-inheritance">
+<div class="section" id="template-inheritance">
 <h1>Template Inheritance</h1>
 <p>You can combine templates in a number of different ways.</p>
 <ul class="incremental simple">
@@ -858,7 +1159,7 @@ users (more on this later).</li>
 </li>
 </ul>
 </div>
-<div class="slide" id="displaying-an-entries-list">
+<div class="section" id="displaying-an-entries-list">
 <h1>Displaying an Entries List</h1>
 <p>Create a new file, <tt class="docutils literal">show_entries.html</tt> in <tt class="docutils literal">templates</tt>:</p>
 <pre class="code jinja small literal-block">
@@ -880,7 +1181,7 @@ users (more on this later).</li>
 </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
 </pre>
 </div>
-<div class="slide" id="viewing-entries">
+<div class="section" id="viewing-entries">
 <h1>Viewing Entries</h1>
 <p>We just need a Python function that will:</p>
 <ul class="incremental simple">
@@ -890,7 +1191,7 @@ users (more on this later).</li>
 </ul>
 <p class="incremental">As usual, we'll start by writing tests for this new function</p>
 </div>
-<div class="slide" id="test-viewing-entries">
+<div class="section" id="test-viewing-entries">
 <h1>Test Viewing Entries</h1>
 <p>Add the following two tests to <tt class="docutils literal">microblog_tests.py</tt>:</p>
 <pre class="code python small literal-block">
@@ -909,7 +1210,7 @@ users (more on this later).</li>
 </pre>
 <p class="incremental"><tt class="docutils literal">app.test_client()</tt> creates a mock http client for us.</p>
 </div>
-<div class="slide" id="id1">
+<div class="section" id="id1">
 <h1>Run Your Tests</h1>
 <pre class="small literal-block">
 (flaskenv)$ python microblog_tests.py
@@ -934,7 +1235,7 @@ Ran 6 tests in 0.138s
 FAILED (failures=2)
 </pre>
 </div>
-<div class="slide" id="id2">
+<div class="section" id="id2">
 <h1>Make Them Pass</h1>
 <p>In <tt class="docutils literal">microblog.py</tt>:</p>
 <pre class="code python small literal-block">
@@ -956,7 +1257,7 @@ Ran 6 tests in 0.100s
 OK
 </pre>
 </div>
-<div class="slide" id="creating-entries">
+<div class="section" id="creating-entries">
 <h1>Creating Entries</h1>
 <p>We still lack a way to add an entry. We need a view that will:</p>
 <ul class="incremental simple">
@@ -968,7 +1269,7 @@ OK
 </ul>
 <p class="incremental">Again, first come the tests.</p>
 </div>
-<div class="slide" id="testing-add-an-entry">
+<div class="section" id="testing-add-an-entry">
 <h1>Testing Add an Entry</h1>
 <p>Add this to <tt class="docutils literal">microblog_tests.py</tt>:</p>
 <pre class="code python small literal-block">
@@ -982,7 +1283,7 @@ OK
     <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s">'This is a post'</span> <span class="ow">in</span> <span class="n">actual</span><span class="p">)</span>
 </pre>
 </div>
-<div class="slide" id="id3">
+<div class="section" id="id3">
 <h1>Run Your Tests</h1>
 <p>Verify that our test fails as expected:</p>
 <pre class="small literal-block">
@@ -1002,7 +1303,7 @@ Ran 7 tests in 0.050s
 FAILED (failures=1)
 </pre>
 </div>
-<div class="slide" id="id4">
+<div class="section" id="id4">
 <h1>Make Them Pass</h1>
 <p>We have all we need to write entries, all we lack is an endpoint (in
 <tt class="docutils literal">microblog.py</tt>):</p>
@@ -1022,7 +1323,7 @@ FAILED (failures=1)
     <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'show_entries'</span><span class="p">))</span>
 </pre>
 </div>
-<div class="slide" id="and">
+<div class="section" id="and">
 <h1>And...?</h1>
 <pre class="small literal-block">
 (flaskenv)$ python microblog_tests.py
@@ -1034,7 +1335,7 @@ OK
 </pre>
 <p class="incremental center"><strong>Hooray!</strong></p>
 </div>
-<div class="slide" id="where-do-entries-come-from">
+<div class="section" id="where-do-entries-come-from">
 <h1>Where do Entries Come From</h1>
 <p>Finally, we're almost done. We can add entries and view them. But look at that
 last view. Do you see a call to <tt class="docutils literal">render_template</tt> in there at all?</p>
@@ -1043,7 +1344,7 @@ Look carefully at the logic. What happens?</p>
 <p class="incremental">So where do the form values come from?</p>
 <p class="incremental">Let's add a form to the main view.  Open <tt class="docutils literal">show_entries.html</tt></p>
 </div>
-<div class="slide" id="provide-a-form">
+<div class="section" id="provide-a-form">
 <h1>Provide a Form</h1>
 <pre class="code jinja small literal-block">
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">body</span> <span class="cp">%}</span><span class="x">  &lt;!-- already there --&gt;
@@ -1065,7 +1366,7 @@ Look carefully at the logic. What happens?</p>
 &lt;h2&gt;Posts&lt;/h2&gt;  &lt;!-- already there --&gt;</span>
 </pre>
 </div>
-<div class="slide" id="all-done">
+<div class="section" id="all-done">
 <h1>All Done</h1>
 <p>Okay.  That's it.  We've got an app all written.</p>
 <p class="incremental">So far, we haven't actually touched our browsers at all, but we have
@@ -1077,11 +1378,11 @@ reasonable certainty that this works because of our tests. Let's try it.</p>
 * Restarting with reloader
 </pre>
 </div>
-<div class="slide" id="the-big-payoff">
+<div class="section" id="the-big-payoff">
 <h1>The Big Payoff</h1>
 <p>Now load <tt class="docutils literal"><span class="pre">http://localhost:5000/</span></tt> in your browser and enjoy your reward.</p>
 </div>
-<div class="slide" id="making-it-pretty">
+<div class="section" id="making-it-pretty">
 <h1>Making It Pretty</h1>
 <p>What we've got here is pretty ugly.</p>
 <p class="incremental">If you've fallen behind, or want to start fresh, you can find the finished
@@ -1090,7 +1391,7 @@ reasonable certainty that this works because of our tests. Let's try it.</p>
 <tt class="docutils literal">styles.css</tt>. Open it in your editor.  It contains basic CSS for this app.</p>
 <p class="incremental">We'll need to include this file in our <tt class="docutils literal">layout.html</tt>.</p>
 </div>
-<div class="slide" id="static-files">
+<div class="section" id="static-files">
 <h1>Static Files</h1>
 <p>Like page templates, Flask locates static resources like images, css and
 javascript by looking for a <tt class="docutils literal">static</tt> directory relative to the app root.</p>
@@ -1103,7 +1404,7 @@ Open <tt class="docutils literal">layout.html</tt> and add the following:</p>
 &lt;/head&gt;</span>
 </pre>
 </div>
-<div class="slide" id="homework">
+<div class="section" id="homework">
 <h1>Homework</h1>
 <p>We've built a simple microblog application in the <em>Flask</em> web framework.</p>
 <p class="incremental">For your homework this week I'd like you to add two features to this app.</p>
@@ -1112,7 +1413,7 @@ Open <tt class="docutils literal">layout.html</tt> and add the following:</p>
 <li>Flash messaging</li>
 </ol>
 </div>
-<div class="slide" id="authentication-specifications">
+<div class="section" id="authentication-specifications">
 <h1>Authentication Specifications</h1>
 <p>Writing new entries should be restricted to users who have logged in. This
 means that:</p>
@@ -1129,7 +1430,7 @@ list page</li>
 the log in link should re-appear.</li>
 </ul>
 </div>
-<div class="slide" id="flash-messaging-specifications">
+<div class="section" id="flash-messaging-specifications">
 <h1>Flash Messaging Specifications</h1>
 <p>A flask app provides a method called <cite>flash</cite> that allows passing messages from
 a view function into a template context so that they can be viewed by a user.</p>
@@ -1142,7 +1443,7 @@ a view function into a template context so that they can be viewed by a user.</p
 alert the user to the error by displaying the error message to the user.</li>
 </ul>
 </div>
-<div class="slide" id="resources-to-use">
+<div class="section" id="resources-to-use">
 <h1>Resources to Use</h1>
 <p>The microblog we created today comes from the tutorial on the <cite>flask</cite> website.
 I've modified that tutorial to omit authentication and flash messaging. You can
@@ -1154,7 +1455,7 @@ to accomplish these tasks.</p>
 attention to how a session is enabled and what you can do with it once it
 exists.</p>
 </div>
-<div class="slide" id="next-week">
+<div class="section" id="next-week">
 <h1>Next Week</h1>
 <p>Next week we are going to mix things up a little and do something quite
 different.</p>
@@ -1165,13 +1466,18 @@ will provide.</p>
 <p class="incremental">We'll spend the entire class implementing this feature, and at 8:15, each pair
 will show their work to the class.</p>
 </div>
-<div class="slide" id="wrap-up">
+<div class="section" id="wrap-up">
 <h1>Wrap-Up</h1>
 <p>For educational purposes you might try taking a look at the source code for
 Flask and Werkzeug.  Neither is too large a package.</p>
 <p class="incremental">In particular seeing how Werkzeug sets up a Request and Response--and how
 these relate to the WSGI specification--can be very enlightening.</p>
 </div>
+</div>
+<div class="footer">
+<hr class="footer" />
+<a class="reference external" href="http://github.com/cewing/training.python_web">View document source</a>.
+
 </div>
 </body>
 </html>
