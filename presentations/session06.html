@@ -72,26 +72,71 @@ that arise.</p>
 <p class="incremental">So take the next few minutes to find a partner and pair up. You must end up
 sitting next to your partner, so get up and move.</p>
 <p class="incremental">One of you will start as the driver, the other as the observer.</p>
-<p class="incremental">About every 20 minutes, we will switch, so that each of you can take a turn
+<p class="incremental">About every 20-30 minutes, we will switch, so that each of you can take a turn
 driving.</p>
 </div>
 <div class="slide" id="preparation">
 <h1>Preparation</h1>
 <p>In order for this to work properly, we'll need to have a few things in place.</p>
-<div class="incremental container">
-<p>First, you'll all need to make sure that you have the very latest code from the
-class repository available on your local machine:</p>
-<pre class="literal-block">
-$ git add remote uwpce git&#64;github.com:UWPCE-PythonCert/training.python_web.git
+<div class="incremental small container">
+<p>First, we'll start from a canonical copy of the microblog.  Make a fork of
+the following repository to your github account:</p>
+<pre class="code small literal-block">
+https://github.com/UWPCE-PythonCert/training.sample-flask-app
 </pre>
 </div>
-<div class="incremental container">
-<p>First, you both will need to make a branch of the class repository that you
-can work on:</p>
-<pre class="literal-block">
-$ git checkout -b session06-class
+<div class="incremental small container">
+<p>Then, clone that repository to your local machine:</p>
+<pre class="code bash small literal-block">
+<span class="nv">$ </span>git clone https://github.com/&lt;your_name&gt;/training.sample-flask-app.git
+or
+<span class="nv">$ </span>git clone git&#64;github.com:&lt;your_name&gt;/training.sample-flask-app.git
 </pre>
 </div>
+</div>
+<div class="slide" id="connect-to-your-partner">
+<h1>Connect to Your Partner</h1>
+<p>Finally, you'll want to connect to your partner's repository, so that you can
+each work on your own laptop and still share the changes you make.</p>
+<div class="incremental small container">
+<p>First, add your partner's repository as <tt class="docutils literal">upstream</tt> to yours:</p>
+<pre class="code bash small literal-block">
+<span class="nv">$ </span>git remote add upstream https://github.com/&lt;partner&gt;/training.sample-flask-app.git
+or
+<span class="nv">$ </span>git remote add upstream git&#64;github.com:&lt;partner&gt;/training.sample-flask-app.git
+</pre>
+</div>
+<div class="incremental small container">
+<p>Then, fetch their copy so that you can easily merge their changes later:</p>
+<pre class="code bash small literal-block">
+<span class="nv">$ </span>git fetch upstream
+</pre>
+</div>
+</div>
+<div class="slide" id="while-you-work">
+<h1>While You Work</h1>
+<p class="small">Now, when you switch roles during your work, here's the workflow you can use:</p>
+<ol class="small arabic simple">
+<li>The current driver commits all changes and pushes to their repository:</li>
+</ol>
+<pre class="code bash small literal-block">
+<span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Time to switch roles&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre>
+<ol class="small arabic simple" start="2">
+<li>The new driver fetches and merges changes made upstream:</li>
+</ol>
+<pre class="code bash small literal-block">
+<span class="nv">$ </span>git fetch upstream master
+<span class="nv">$ </span>git branch -a
+* master
+  remotes/origin/master
+  remotes/upstream/master
+<span class="nv">$ </span>git merge upstream/master
+</pre>
+<ol class="small arabic simple" start="3">
+<li>The new driver continues working from where their partner left off.</li>
+</ol>
 </div>
 </div>
 </body>
