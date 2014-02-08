@@ -162,6 +162,13 @@ our work quickly across different environments.
 
 `Lecture Slides <presentations/session06.html>`_
 
+Homework Tutorials
+******************
+
+Please walk through this tutorial before session 7 begins.
+
+* `An Introduction to Django <presentations/django_intro-plain.html>`_
+
 
 Session 7 - Basic Django
 ------------------------
