@@ -200,7 +200,7 @@ ignore them for now.</p>
 <div class="slide" id="django-and-your-database">
 <h1>Django and Your Database</h1>
 <p>Django's ORM provides a layer of <em>abstraction</em> between you and SQL</p>
-<p class="incremental">You write Python classes called <em>models</em> describing the object that make up
+<p class="incremental">You write Python classes called <em>models</em> describing the objects that make up
 your system.</p>
 <p class="incremental">The ORM handles converting data from these objects into SQL statements (and
 back)</p>
@@ -233,16 +233,12 @@ website:</p>
 <p>They're in <tt class="docutils literal">settings.py</tt> in the <tt class="docutils literal">INSTALLED_APPS</tt> setting:</p>
 <pre class="code python small literal-block">
 <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">'django.contrib.admin'</span><span class="p">,</span>
     <span class="s">'django.contrib.auth'</span><span class="p">,</span>
     <span class="s">'django.contrib.contenttypes'</span><span class="p">,</span>
     <span class="s">'django.contrib.sessions'</span><span class="p">,</span>
-    <span class="s">'django.contrib.sites'</span><span class="p">,</span>
     <span class="s">'django.contrib.messages'</span><span class="p">,</span>
     <span class="s">'django.contrib.staticfiles'</span><span class="p">,</span>
-    <span class="c"># Uncomment the next line to enable the admin:</span>
-    <span class="c"># 'django.contrib.admin',</span>
-    <span class="c"># Uncomment the next line to enable admin documentation:</span>
-    <span class="c"># 'django.contrib.admindocs',</span>
 <span class="p">)</span>
 </pre>
 </div>
@@ -416,10 +412,10 @@ column NULL or NOT NULL</p>
 <p>You extend Django functionality by <em>installing apps</em>. This is pretty simple:</p>
 <pre class="code python small literal-block">
 <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">'django.contrib.admin'</span><span class="p">,</span>
     <span class="s">'django.contrib.auth'</span><span class="p">,</span>
     <span class="s">'django.contrib.contenttypes'</span><span class="p">,</span>
     <span class="s">'django.contrib.sessions'</span><span class="p">,</span>
-    <span class="s">'django.contrib.sites'</span><span class="p">,</span>
     <span class="s">'django.contrib.messages'</span><span class="p">,</span>
     <span class="s">'django.contrib.staticfiles'</span><span class="p">,</span>
     <span class="s">'myblog'</span><span class="p">,</span> <span class="c"># &lt;- YOU ADD THIS PART</span>
@@ -493,7 +489,7 @@ directly.</li>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">all_users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">all_users</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">User</span><span class="p">:</span> <span class="n">cewing</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="n">User</span><span class="p">:</span> <span class="n">admin</span><span class="o">&gt;</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">u1</span> <span class="o">=</span> <span class="n">all_users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">u1</span>
 </pre>
@@ -676,7 +672,7 @@ directory, it contains users for our tests.</p>
 <h1>Setting Up Tests</h1>
 <p>Now that we have a fixture, we need to instruct our tests to use it.</p>
 <div class="incremental container">
-<p>Edit <tt class="docutils literal">tests.py</tt> (which comes with one test already) to look like this:</p>
+<p>Edit <tt class="docutils literal">tests.py</tt> to look like this:</p>
 <pre class="code python small literal-block">
 <span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
@@ -823,7 +819,7 @@ verify that you see it in the list:</p>
 <h1>Django URL Resolution</h1>
 <p>Django too has a system for dispatching requests to code: the <em>urlconf</em>.</p>
 <ul class="incremental simple">
-<li>A urlconf is a an iterable of calls to the <tt class="docutils literal">django.conf.urls.url</tt> function</li>
+<li>A urlconf is an iterable of calls to the <tt class="docutils literal">django.conf.urls.url</tt> function</li>
 <li>This function takes:<ul>
 <li>a regexp <em>rule</em>, representing the URL</li>
 <li>a <tt class="docutils literal">callable</tt> to be invoked (or a name identifying one)</li>
